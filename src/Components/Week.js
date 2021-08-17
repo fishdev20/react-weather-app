@@ -8,7 +8,7 @@ export default function Week({daily}) {
     const [selected, setSelected] = useState(0);
     
     const selectedChangeHandler = (e) => {
-        setSelected(e.currentTarget.dataset.id);
+        setSelected(+e.currentTarget.dataset.id);
     };
 
     return (
@@ -17,12 +17,11 @@ export default function Week({daily}) {
                     
                 {daily ? daily.map((day, i) => (
                     <Col xs={3} sm={3} md={6} lg={3} className=""
-                        
                         key={i}
                         data-id={i}
                         onClick={selectedChangeHandler}
                     >
-                        <div className="day-container">
+                        <div className={`${i === selected ? "day-container active " : "day-container"}`}>
                             <h6>
                                 {new Date(day.dt * 1000).toLocaleDateString("en-GB", {
                                 weekday: "short",

@@ -3,20 +3,40 @@ import { Col, Form } from 'react-bootstrap'
 import '../Components/Style/SearchWeather.css'
 
 
-export default function SearchWeather({typecity, settypecity, img, value, location, temp, setcity, disc,percentage, clouds, time}) {
-    
+export default function SearchWeather({typecity, settypecity, img, value, setValue, location, temp, setcity, disc,percentage, clouds, time}) {
 
-    const citySelect = (e) => {
-        setcity(typecity);
-        
-      };
-      
+
+
+
+
+
+
+  
+  // const search = evt => {
+  //   if (evt.key === "Enter") {
+  //     fetch(`${api.base}weather?q=${city}&units=metric&APPID=${api.key}`)
+  //       .then(res => res.json())
+  //       .then(result => {
+  //         setWeather(result);
+  //         setQuery('');
+  //       }, [api.base]);
+  //   }
+  // }
     
+  const search =(e) => {
+    if (e.key === 'Enter') {
+      setcity(typecity);
+      settypecity('');
+      e.preventDefault();
+      e.stopPropagation();
+    } 
+  }
+
     const handleChange = (e) => {
-        e.preventDefault();
         settypecity(e.target.value);  
     }
-    // settypecity("");
+    
+
 
     const dateBuilder = (d) => {
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -29,15 +49,16 @@ export default function SearchWeather({typecity, settypecity, img, value, locati
         return `${day} ${date} ${month} ${year}`
       }
     return (
-        <Col lg={3} md={4} sm={12} className="col-search search-form">
-          
+        <Col lg={3} md={4} sm={12} className="col-search search-form" >
+            <Form className="form">
               <Form.Control 
                 type="text" 
                 placeholder="Search" 
                 className="mt-20"
                 value={typecity}
                 onChange={handleChange}
-                onKeyPress={citySelect}
+                // onKeyPress={citySelect}
+                onKeyDown={search}
               />
               {/* <FontAwesomeIcon icon={faSun} className="icon mt-20" /> */}
               <img src={img} alt="weather icon" className="imgcss" />
@@ -47,12 +68,15 @@ export default function SearchWeather({typecity, settypecity, img, value, locati
                 </h1>
                 <h5>
                     {dateBuilder(new Date())}
-                    <br/> {new Date(time * 1000).toLocaleDateString("en-GB", {
-                                    hour12: true,
+                  </h5>
+                    <h3>
+                    {new Date(time * 1000).toLocaleDateString("en-GB", {
+                                    hour24: true,
                                     hour: "numeric",
                                     minute: "2-digit",
                                 }).split(',')[1]}
-                </h5>
+                    </h3>
+                
                 <p>
                 {disc}
                 <br/>
@@ -68,7 +92,7 @@ export default function SearchWeather({typecity, settypecity, img, value, locati
                 
               </div>
               {/* <img  className="img " src="https://us.123rf.com/450wm/macrovector/macrovector1805/macrovector180500152/100615959-weather-forecast-web-page-with-heavy-rain-on-dark-cloudy-day-with-people-under-umbrellas-vector-illu.jpg?ver=6" alt="img" /> */}
-          
+          </Form>
         </Col>
     )
 }

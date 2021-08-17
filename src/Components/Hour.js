@@ -6,13 +6,13 @@ function Hour({hourly}) {
     const hours = [];
     const temp = [];
     const feel = [];
-    const getHours = hourly.map(el => [...hours, new Date(el.dt * 1000).toLocaleDateString("en-GB", {
+    const setHours = hourly.map(el => [...hours, new Date(el.dt * 1000).toLocaleDateString("en-GB", {
         hour24: true,
         hour: "numeric",
         minute: "2-digit",
       }).split(',')[1]]);
-    const getTemp = hourly.map(el => [...temp, el.temp]);
-    const getFeel = hourly.map(el => [...feel, el.feels_like]);
+    const setTemp = hourly.map(el => [...temp, el.temp]);
+    const setFeel = hourly.map(el => [...feel, el.feels_like]);
 
     return (
         
@@ -21,17 +21,17 @@ function Hour({hourly}) {
                 <div className="bg-white p-2 mt-2 rounded-3">
                     <Line
                         data={{
-                            labels:  getHours,
+                            labels:  setHours,
                             datasets:
                                 [
                                     {
-                                        data: getTemp.flat(),
+                                        data: setTemp.flat(),
                                         label: " Temp (°C)",
-                                        borderColor: "#8e5ea2",
+                                        borderColor: "lightblue",
                                         fill: false
                                     },
                                     {
-                                        data: getFeel.flat(),
+                                        data: setFeel.flat(),
                                         label: " Feel like (°C)",
                                         borderColor: "orange",
                                         fill: false

@@ -5,6 +5,7 @@
 .search-form {
     padding: 20px 20px;
 }
+
 .search-form .imgcss {
     width: 100%;
     max-width: 150px;    
@@ -14,6 +15,7 @@
     object-fit: cover;
     width: 100%;
     border-radius: 10px;
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px;
 }
 
 
@@ -22,6 +24,7 @@
     padding: 0;
     margin: 0;
     text-align: center;
+    
    }
 
    .image{

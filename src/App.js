@@ -58,9 +58,10 @@ import SearchWeather from './Components/SearchWeather';
         setSunset(res.data.sys.sunset)
         setCoord(res.data.coord)
         // console.log(res);
+        // console.log('render');
       }) 
       .catch(function (error) {
-        console.log(error);
+        console.log('error');
       }); 
     }, [city]);
 
@@ -122,55 +123,18 @@ import SearchWeather from './Components/SearchWeather';
           percentage={percentage}
           clouds={clouds}
           time={time}
+          setValue={setValue}
           
         />
         <Col lg={9} md={8} sm={12} className="weather-info" >
           <div className="info-container">
-            {/* <Router>
-              <div className="nav mt-20">
-                <ul>
-                  <li >
-                    <Link to="/" className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(1)}>Today</Link>
-                  </li>
-                  <li >
-                    <Link to="/week" className={toggleState === 2 ? "tabs active-tabs" : "tabs"}  onClick={() => toggleTab(2)}>Week</Link>
-                  </li>
-                  <li >
-                    <Link to="/hour" className={toggleState === 3 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(3)}>Hour</Link>
-                  </li>
-                </ul>
-                <div className="user">
-                    <img src="https://i0.wp.com/i.pinimg.com/originals/89/54/38/895438247efa788551d1919d44f176ca.png" alt="user"/>
-                  </div>
-              </div>
-              <Switch>
-                  <Route path="/week">
-                    <Week/>
-                  </Route>
-                  <Route path="/hour">
-                    <Hour/>
-                  </Route>
-                  <Route path="/">
-                    <Today
-                      wind={wind}
-                      humidity={humidity}
-                      visibility={visibility}
-                      pressure={pressure}
-                      sunrise={sunrise}
-                      sunset={sunset}
-                      uv={uv}
-                      
-                    />
-                  </Route>
-                </Switch>
-            </Router> */}
             <div className="navbar">
                   <ul className="nav">
                     {tabs.map((el, index) =>
                       <li 
                         key={index} 
                         role="button" 
-                        className={`nav-item m-2 ${el.status ? 'tabs active-tabs' : 'tabs'}`} 
+                        className={`${el.status ? 'tabs active-tabs' : 'tabs'}`} 
                         onClick={() => handleChangeTab(el)}
                       >
                         {el.name}
@@ -206,8 +170,7 @@ import SearchWeather from './Components/SearchWeather';
                   )}
             </div>
           </div>
-        </Col>
-        
+        </Col> 
     </Row>
     </Container>
   );
